@@ -1,137 +1,34 @@
 # zoom-kick
-zoom-kick は、パスコード付き zoom の起動情報をまるごとクリップボードに入れ、直接起動できる URL を生成して zoom をキックするツールです。
+zoom-kick は、メールで展開されるパスコード付き zoom の起動情報をまるごとクリップボードに入れ、直接起動できる URL を生成して zoom をキックするツールです。
 
-#クリップボードからIDとPWを取り出して、zoom の URL をキックする
-import pyperclip
-import webbrowser
+##処理概要
+ソースを見て下さい。そこそこ例外動作は入れてあります。
 
-zoom_id = ''
-zoom_pc = ''
-zoom_url = ''
-xmi = 0
-xpw = 0
-xpc = 0
-count = 0
+## Features
+パスコードの入力が自動に行えます。通常コピペですると思いますが、後続空白を切り取ってしまったりというエラーが無くなります。
 
-lines = pyperclip.paste().split()
-count = len(lines)
+## Requirement
+python の実行環境があれば、zoom-kick.py を DL して使って下さい。
+無ければ、zoom-kick.exe と、dll 2つを同じディレクトリに置いて、exe ファイルを実行して下さい。
 
-# ミーティング ID のみを指定した際の、例外処理
+## Installation
+ソースを持って行った人は、エラーが出たら個別に対応して下さい。
 
-if count == 0 :
-	print ('ERR クリップボードが空です')
-	input ()
-	exit()
+## Usage
+動かすだけです。特に UI はありません。
+#### zoom の招待メールの該当部分を「ザックリ」コピーする
+#### zoom-kick を実行する
+#### zoom が起動する
 
-if count == 2 :
-	print ('ERR クリップボードに２つしか単語がありません')
-	input ()
-	exit()
+## Note
+zoom の仕様が変わると、動かなくなる可能性はあります。
+例えば、最初は「パスワード」というキーワードでメールが来ていましたが、現在は「パスコード」で来ます。
+これには対応していますが、今後は分かりません。何かあれば、連絡下さい。
 
-if count == 1 :
-	zoom_id = lines[0]
-elif count == 3 :
-	zoom_id = lines[0] + lines[1] + lines[2]
+## Author
+* 齋藤　誠
+* 個人
+* makoto0119@gmail.com
 
-if zoom_id != '' :
-	zoom_url = 'zoommtg://zoom.us/join?confno=' + zoom_id
-	webbrowser.open(zoom_url)
-	exit()
-
-try:
-	xmi = lines.index('ミーティングID:')
-
-except ValueError :
-	# エラーを表示
-	print ('ERR ID 取得に失敗 / ミーディングID: が見当たりません')
-	input ()
-	exit()
-
-zoom_id = lines[xmi+1] + lines[xmi+2] + lines[xmi+3]
-
-try:
-	xpc = lines.index('パスコード:')
-except ValueError :
-	pass
-
-if xpc == 0 :
-	try:
-		xpw = lines.index('パスワード:') #古い記載の救済
-	except ValueError :
-		pass
-
-if xpw != 0 : #パスワード発見
-	zoom_pc = lines[xpw+1]
-
-if xpc != 0 : #パスコード発見 パスワードよりパスコードを優先
-	zoom_pc = lines[xpc+1]
-
-if zoom_pc =='' :
-	print ('WRN Pass 取得に失敗 / パスコード: が見当たりませんが起動します')
-	input ()
-
-zoom_url = 'zoommtg://zoom.us/join?confno=' + zoom_id + '&pwd=' + zoom_pc
-webbrowser.open(zoom_url)
-
-
-
-# Name（リポジトリ/プロジェクト/OSSなどの名前）
-
-分かりやすくてカッコイイ名前をつける（今回は"hoge"という名前をつける）
-
-"hoge"が何かを簡潔に紹介する
-
-# DEMO
-
-"hoge"の魅力が直感的に伝えわるデモ動画や図解を載せる
-
-# Features
-
-"hoge"のセールスポイントや差別化などを説明する
-
-# Requirement
-
-"hoge"を動かすのに必要なライブラリなどを列挙する
-
-* huga 3.5.2
-* hogehuga 1.0.2
-
-# Installation
-
-Requirementで列挙したライブラリなどのインストール方法を説明する
-
-```bash
-pip install huga_package
-```
-
-# Usage
-
-DEMOの実行方法など、"hoge"の基本的な使い方を説明する
-
-```bash
-git clone https://github.com/hoge/~
-cd examples
-python demo.py
-```
-
-# Note
-
-注意点などがあれば書く
-
-# Author
-
-作成情報を列挙する
-
-* 作成者
-* 所属
-* E-mail
-
-# License
-ライセンスを明示する
-
-"hoge" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
-
-社内向けなら社外秘であることを明示してる
-
-"hoge" is Confidential.
-## 
+## License
+自由に使って下さい
