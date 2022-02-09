@@ -9,7 +9,8 @@ zoom-kick は、メールで展開されるパスコード付き zoom の起動�
 
 ## Requirement
 python の実行環境があれば、zoom-kick.py を DL して使って下さい。
-無ければ、zoom-kick.exe と、dll 2つを同じディレクトリに置いて、exe ファイルを実行して下さい。
+無ければ、zoom-kick.zip を DL して全体を展開し、zoom-kick.exe を実行して下さい。
+lib 以下のファイルの展開も必要です。
 
 ## Installation
 ソースを持って行った人は、エラーが出たら個別に対応して下さい。
