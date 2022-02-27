@@ -14,6 +14,7 @@ zoom-kick は、メールで展開されるパスコード付き zoom の起動�
 python の実行環境があれば、zoom-kick.py を DL して使って下さい。
 無ければ、zoom-kick.zip を DL して全体を展開し、zoom-kick.exe を実行して下さい。
 lib 以下のファイルの展開も必要です。cxFreeze で、exe 化してあります。
+vsc でコミット
 
 ## Usage
 動かすだけです。特に UI はありません。
